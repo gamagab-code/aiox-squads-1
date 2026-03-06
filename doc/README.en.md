@@ -11,10 +11,7 @@
 
 <p align="center">
   <a href="https://github.com/SynkraAI/aiox-squads/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue" alt="MIT License" /></a>
-  <a href="https://github.com/SynkraAI/aiox-squads/stargazers"><img src="https://img.shields.io/github/stars/AIOSAI/aiox-squads?style=flat" alt="Stars" /></a>
-  <a href="https://github.com/SynkraAI/aiox-squads"><img src="https://img.shields.io/badge/squads-21-blue" alt="Squads" /></a>
-  <a href="https://github.com/SynkraAI/aiox-squads"><img src="https://img.shields.io/badge/agents-184+-purple" alt="Agents" /></a>
-  <a href="https://github.com/SynkraAI/aiox-squads"><img src="https://img.shields.io/badge/tasks-499+-green" alt="Tasks" /></a>
+  <a href="https://github.com/SynkraAI/aiox-squads/stargazers"><img src="https://img.shields.io/github/stars/SynkraAI/aiox-squads?style=flat" alt="Stars" /></a>
 </p>
 
 <p align="center">
@@ -25,23 +22,24 @@
 
 ## What is AIOX Squads?
 
-# Open-source expert AI teams you plug into any project
+# The community repository for AIOX squads
 
 **If an AI agent is an _employee_, a Squad is an entire _department_.**
 
-AIOX Squads is the official library of specialized teams for the [AIOS](https://github.com/SynkraAI/aiox-core) framework. Each squad is a self-contained package of AI agents cloned from real-world experts — with Voice DNA, decision heuristics, and quality gates — that you install into your project with a single command. From copywriting to cybersecurity, from brand strategy to data analytics.
+This is the official community repository for sharing, discovering, and contributing squads for the [AIOX](https://github.com/SynkraAI/aiox-core) framework. Squads are self-contained packages of specialized AI agents — with Voice DNA, decision heuristics, and quality gates — that any AIOX user can install, use, and share.
 
-**Don't prompt agents. Deploy departments.**
+**Find squads. Share squads. Build together.**
 
 |        | Step                | Example                                                            |
 | ------ | ------------------- | ------------------------------------------------------------------ |
-| **01** | Pick a squad        | _"I need elite copywriting."_                                       |
-| **02** | Install it          | `*download-squad copy` — or copy the folder manually.               |
+| **01** | Browse the catalog  | _"I need elite copywriting."_                                       |
+| **02** | Install it          | `*download-squad copy` — one command inside AIOX.                   |
 | **03** | Activate the chief  | `@copy-chief` — the orchestrator routes your work to the right specialist. |
+| **04** | Contribute back     | Built a squad? Open a PR and share it with the community.           |
 
 <br/>
 
-> **60+ cloned expert minds.** Agents don't give generic LLM answers. Each one carries the Voice DNA, Thinking DNA, and decision heuristics of a real-world specialist — Gary Halbert, Ray Dalio, Alex Hormozi, Eugene Schwartz, and dozens more.
+> **AIOX (the framework) lives at [aiox-core](https://github.com/SynkraAI/aiox-core).** This repository is where the community publishes and discovers squads — like npm is for Node.js packages.
 
 <br/>
 
@@ -56,25 +54,26 @@ AIOX Squads is the official library of specialized teams for the [AIOS](https://
   </tr>
 </table>
 
-<em>Works on any IDE or CLI that supports structured agents via <a href="https://github.com/SynkraAI/aiox-core">AIOS</a>.</em>
+<em>Any IDE or CLI supported by <a href="https://github.com/SynkraAI/aiox-core">AIOX</a>.</em>
 
 </div>
 
 <br/>
 
-## AIOX Squads is right for you if
+## This repository is for you if
 
-- ✅ You want **instant expert AI teams**, not blank-slate agents you have to prompt from scratch
+- ✅ You use **[AIOX](https://github.com/SynkraAI/aiox-core)** and want **ready-made squads** to install in your project
 - ✅ You need **domain-specific knowledge** — copywriting, security, data, branding — not generic responses
-- ✅ You want agents that **think like real experts**, with cloned frameworks, heuristics, and decision trees
-- ✅ You're tired of writing **the same complex prompts** over and over across projects
-- ✅ You want **quality-validated outputs** with built-in checklists and scoring gates
-- ✅ You want to **compose multiple teams** — a copy squad + a brand squad + a data squad — on the same project
-- ✅ You want to **create and share your own squads** with a standardized, validated structure
+- ✅ You want agents that **think like real experts**, with cloned frameworks and heuristics
+- ✅ You **built a squad** and want to share it with the community
+- ✅ You want to **learn** how squads are built and get inspired by existing examples
+- ✅ You want to **compose multiple squads** — copy + brand + data — on the same project
 
 <br/>
 
-## Features
+## What is a Squad?
+
+A squad is a self-contained package of AI agents that work together in a domain. Not loose prompts — full systems:
 
 <table>
 <tr>
@@ -101,79 +100,28 @@ Every squad is scored and validated. 4-tier quality system ensures agents actual
 Mix squads freely. Run copy + brand + data on the same project. They know how to hand off.
 </td>
 <td align="center">
-<h3>🏭 Squad Creator</h3>
-Build your own squads from templates. 6-phase guided workflow. Auto-validated.
-</td>
-</tr>
-<tr>
-<td align="center">
-<h3>📊 Task-First</h3>
-Tasks are the interface, not chat. Executable workflows with defined inputs, outputs, and criteria.
-</td>
-<td align="center">
 <h3>🎯 Deterministic</h3>
-Heuristics with IF/THEN rules and veto conditions. Agents don't hallucinate strategy — they follow proven playbooks.
-</td>
-<td align="center">
-<h3>🌍 Open Source</h3>
-MIT licensed. Use commercially. Fork freely. Contribute back.
+Heuristics with IF/THEN rules and veto conditions. Agents follow proven playbooks, not vibes.
 </td>
 </tr>
 </table>
 
 <br/>
 
-## Problems AIOX Squads solves
-
-| Without Squads | With Squads |
-|---|---|
-| ❌ You spend 30 minutes writing a copywriting prompt, and the agent still sounds generic. | ✅ `@copy-chief` routes your request to Gary Halbert's cloned agent. Voice DNA handles the rest. |
-| ❌ Every new project starts from zero — no knowledge, no frameworks, no structure. | ✅ `*download-squad advisory-board` — instant access to 60+ expert minds with proven heuristics. |
-| ❌ You ask for "brand strategy" and get a vague 5-paragraph essay. | ✅ The brand squad runs structured tasks with Aaker, Keller, and Ries frameworks built in. |
-| ❌ Your agent gives advice but you have no way to validate if it's actually good. | ✅ Every task has quality gates, checklists, and scoring criteria. Outputs are measured, not hoped for. |
-| ❌ You need multiple specialties (copy + data + design) and manually coordinate between them. | ✅ Squads compose. Handoff protocols let agents delegate across squad boundaries. |
-| ❌ You build great prompts but they live in random files and are impossible to share. | ✅ Standardized squad structure. Version, validate, distribute. Like npm packages for AI expertise. |
-
-<br/>
-
-## Why AIOX Squads is different
-
-|                                  |                                                                                                              |
-| -------------------------------- | ------------------------------------------------------------------------------------------------------------ |
-| **Expert cloning, not prompting.** | Agents carry Voice DNA (how they talk) and Thinking DNA (how they decide). Outputs feel like the real expert. |
-| **Task-first, not chat-first.**    | Every squad ships executable tasks with defined inputs, outputs, and quality criteria.                        |
-| **Validated quality.**             | 4-tier validation system. Squads earn maturity badges: DRAFT → DEVELOPING → OPERATIONAL.                     |
-| **Deterministic heuristics.**      | IF/THEN rules with veto conditions. Agents follow playbooks, not vibes.                                      |
-| **Composable architecture.**       | Tier 0 routes, Tier 1 executes, Tier 2 assists, Tier 3 validates. Squads delegate across boundaries.         |
-| **Portable knowledge.**            | Expert frameworks packaged as folders. Version-controlled. Shareable. Forkable.                               |
-
-<br/>
-
-## What AIOX Squads is not
-
-|                              |                                                                                                    |
-| ---------------------------- | -------------------------------------------------------------------------------------------------- |
-| **Not an agent framework.**  | The framework is [AIOS](https://github.com/SynkraAI/aiox-core). Squads are expert knowledge packages that run on it. |
-| **Not a prompt library.**    | Squads are full systems — agents, tasks, workflows, checklists, templates, data. Not just text files. |
-| **Not a chatbot.**           | Agents have tasks, quality gates, and handoff protocols. Not open-ended conversations.               |
-| **Not a one-size-fits-all.** | Each squad is a specialist. Pick the ones you need. You don't install the whole hospital for a headache. |
-
-<br/>
-
 ## Quickstart
 
-### Prerequisite: AIOS
+### Prerequisite
 
-Squads run on the [AIOS](https://github.com/SynkraAI/aiox-core) framework. If you don't have it yet:
+Squads run on the [AIOX](https://github.com/SynkraAI/aiox-core) framework. If you don't have it yet:
 
 ```bash
 npx aios-core init my-project
 ```
 
-### Install a Squad
+### Install a Squad from this repository
 
 ```bash
-# Option 1: Via AIOS CLI (recommended)
+# Option 1: Via AIOX CLI (recommended)
 @squad-chief
 *download-squad copy
 
@@ -195,11 +143,13 @@ cp -r aiox-squads/squads/copy ./squads/copy
 *create-sales-page
 ```
 
-> **Compatible with:** Claude Code, Codex CLI, Gemini CLI, Cursor — any IDE supported by [AIOS](https://github.com/SynkraAI/aiox-core).
+> **Compatible with:** Claude Code, Codex CLI, Gemini CLI, Cursor — any IDE supported by [AIOX](https://github.com/SynkraAI/aiox-core).
 
 <br/>
 
 ## Squad Catalog
+
+Squads available in this repository. Community contributions are welcome.
 
 ### Content & Marketing
 
@@ -286,18 +236,9 @@ examples:    # Concrete input/output pairs (min. 3)
 handoffs:    # When to stop and delegate to another agent
 ```
 
-### Quality Gates
-
-Every squad passes through 4 tiers of validation:
-
-| Tier | What it validates | Blocking? |
-|------|-------------------|-----------|
-| **Tier 1** | Structure — config.yaml, entry agent, references | YES |
-| **Tier 2** | Coverage — checklists, orphan tasks, data usage | YES |
-| **Tier 3** | Quality — prompts, coherence, documentation | Score ≥ 7.0 |
-| **Tier 4** | Contextual — squad-type specific validation | Weighted |
-
 ### Maturity Levels
+
+Squads in this repository go through validation and earn maturity badges:
 
 | Level | Criteria | Badge |
 |-------|----------|-------|
@@ -307,31 +248,27 @@ Every squad passes through 4 tiers of validation:
 
 <br/>
 
-## CLI Commands
+## Contributing
 
-Squad management via `@squad-chief`:
+This is a community repository — **your contribution is what makes it grow**.
 
-```bash
-# Discover and install
-*list-squads                              # List available squads
-*download-squad {name} [@{version}]       # Install a squad
+### Publish a Squad
 
-# Create and edit
-*design-squad [--domain {domain}]         # Design a new squad
-*create-squad {name} [--template {type}]  # Create from template
-*extend-squad {name} [--add {type}]       # Add agent, task, workflow...
+1. Fork this repository
+2. Create your squad following the [AIOX standard structure](https://github.com/SynkraAI/aiox-core)
+3. Run `*validate-squad {name}` and ensure score ≥ 7.0
+4. Open a PR with: domain description, validation score, and at least 1 real usage example
 
-# Validate and publish
-*validate-squad {name} [--strict]         # Validate structure and quality
-*analyze-squad {name} [--verbose]         # Detailed analysis
-*publish-squad {path}                     # Publish squad
-```
+### Improve an Existing Squad
 
-<br/>
+1. Open an issue describing the improvement
+2. Fork and implement
+3. Run `*validate-squad` to make sure nothing broke
+4. Open a PR referencing the issue
 
-## Build Your Own Squad
+### Create a Squad from Scratch
 
-### Option 1: Squad Creator (recommended)
+Use the squad-creator inside AIOX:
 
 ```
 @squad-chief
@@ -340,56 +277,21 @@ Squad management via `@squad-chief`:
 
 Guided 6-phase workflow: Type Detection → Domain Elicitation → Template Loading → Architecture Proposal → Creation → Validation.
 
-### Option 2: Manual
-
-```bash
-mkdir -p squads/my-squad/{agents,tasks,templates,checklists,data}
-```
-
-Create `config.yaml`, build your chief agent, add tasks, then validate:
-
-```
-@squad-chief
-*validate-squad my-squad
-```
-
-<br/>
-
-## Ecosystem
-
-AIOX Squads is the expert knowledge layer of the [AIOS](https://github.com/SynkraAI) ecosystem:
-
-<div align="center">
-<table>
-  <tr>
-    <td align="center" width="33%">
-      <a href="https://github.com/SynkraAI/aiox-core"><strong>AIOS</strong></a><br/>
-      <sub>The orchestration framework.<br/>CLI-first. 12 built-in agents.<br/>Story-driven development.</sub>
-    </td>
-    <td align="center" width="33%">
-      <a href="https://github.com/SynkraAI/aiox-squads"><strong>AIOX Squads</strong></a><br/>
-      <sub>Expert AI teams.<br/>21 squads, 184+ agents,<br/>60+ cloned minds.</sub>
-    </td>
-    <td align="center" width="33%">
-      <a href="https://github.com/SynkraAI/aiox-dashboard"><strong>AIOX Dashboard</strong></a><br/>
-      <sub>Real-time observability.<br/>Kanban, agent status,<br/>live event monitoring.</sub>
-    </td>
-  </tr>
-</table>
-</div>
-
 <br/>
 
 ## FAQ
 
-**Do I need AIOS to use squads?**
-Yes. Squads are packages that run on the [AIOS](https://github.com/SynkraAI/aiox-core) framework. Install with `npx aios-core init`.
+**Is this AIOX?**
+No. The AIOX framework lives at [aiox-core](https://github.com/SynkraAI/aiox-core). This repository is where the community shares squads — like npm is for Node.js packages.
+
+**Do I need AIOX to use squads?**
+Yes. Squads are packages that run on the [AIOX](https://github.com/SynkraAI/aiox-core) framework. Install with `npx aios-core init`.
 
 **Do I need all the squads?**
 No. Each squad is self-contained. Install only what you need.
 
 **Does it only work on Claude Code?**
-No. AIOS supports Claude Code, Codex CLI, Gemini CLI, and Cursor. Compatibility varies by IDE — Claude Code has full support.
+No. AIOX supports Claude Code, Codex CLI, Gemini CLI, and Cursor. Compatibility varies by IDE — Claude Code has full support.
 
 **Can I use it in commercial projects?**
 Yes. MIT license.
@@ -397,33 +299,11 @@ Yes. MIT license.
 **How do I update a squad?**
 Run `*download-squad {name}` again or replace the folder manually. Each squad's `CHANGELOG.md` documents breaking changes.
 
-**How is this different from a prompt library?**
-Squads are full systems — agents with decision heuristics, executable tasks with quality gates, templates, checklists, and knowledge bases. Not just text files with instructions.
+**How do I contribute a squad?**
+Fork, create your squad, validate with `*validate-squad`, open a PR. See the [Contributing](#contributing) section.
 
 **What's Voice DNA?**
 It's how we clone expert communication style. Sentence starters, vocabulary rules, anti-patterns — so agents don't just know what to say, they know *how* to say it like the real expert would.
-
-<br/>
-
-## Contributing
-
-1. Fork this repository
-2. Create your squad following the [standards](#build-your-own-squad)
-3. Run `*validate-squad {name}` and ensure score ≥ 7.0
-4. Open a PR with: domain description, validation score, and at least 1 real usage example
-
-See [CONTRIBUTING.md](../CONTRIBUTING.md) for the full guide.
-
-<br/>
-
-## Roadmap
-
-- ⚪ Squad marketplace — discover and install squads with one command
-- ⚪ Cross-squad memory — persistent learning across sessions
-- ⚪ Visual squad composer — drag-and-drop squad assembly
-- ⚪ Enterprise integrations — Jira, Linear, Notion connectors
-- ⚪ Community squad submissions — curated, peer-reviewed contributions
-- ⚪ Performance benchmarks — measure agent output quality over time
 
 <br/>
 
@@ -436,9 +316,5 @@ MIT &copy; 2026 AIOX Squads
 ---
 
 <p align="center">
-  <sub>Open source under MIT. Built for people who want expert teams, not blank-slate agents.</sub>
-</p>
-
-<p align="center">
-  <sub>Part of the <a href="https://github.com/SynkraAI">AIOS</a> ecosystem.</sub>
+  <sub>Open source under MIT. Community repository for <a href="https://github.com/SynkraAI/aiox-core">AIOX</a> squads.</sub>
 </p>
