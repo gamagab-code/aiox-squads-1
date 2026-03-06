@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="doc/assets/header.png" alt="AIOX Squads — times de IA especialistas, prontos para deploy" width="720" />
+  <img src="doc/assets/header.jpg" alt="AIOX Squad" width="720" />
 </p>
 
 <p align="center">
@@ -149,11 +149,11 @@ cp -r aiox-squads/squads/copy ./squads/copy
 
 ## Catálogo de Squads
 
-Squads publicados pela comunidade neste repositório.
+Squads disponíveis neste repositório.
 
-| Squad | Agentes | O que faz | Status |
-|-------|---------|-----------|--------|
-| _Nenhum squad publicado ainda_ | — | Seja o primeiro a contribuir! | — |
+| Squad | O que faz | Status |
+|-------|-----------|--------|
+| [**squad-creator-pro**](squads/squad-creator-pro/) | Upgrade pack para o Squad Creator base — mind cloning, model routing, 3 agentes especialistas, axioma assessment | Em breve |
 
 > Tem um squad pronto? [Abra um PR](#contribuindo) e compartilhe com a comunidade.
 

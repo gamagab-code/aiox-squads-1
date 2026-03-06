@@ -149,11 +149,11 @@ cp -r aiox-squads/squads/copy ./squads/copy
 
 ## Squad Catalog
 
-Squads published by the community in this repository.
+Squads available in this repository.
 
-| Squad | Agents | What it does | Status |
-|-------|--------|-------------|--------|
-| _No squads published yet_ | — | Be the first to contribute! | — |
+| Squad | What it does | Status |
+|-------|-------------|--------|
+| [**squad-creator-pro**](../squads/squad-creator-pro/) | Upgrade pack for the base Squad Creator — mind cloning, model routing, 3 specialist agents, axioma assessment | Coming soon |
 
 > Have a squad ready? [Open a PR](#contributing) and share it with the community.
 
