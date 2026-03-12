@@ -4,6 +4,7 @@
 # =============================================================================
 # Usage:
 #   ./deploy.sh local      — Docker Compose (local)
+#   ./deploy.sh hostinger  — Deploy para Hostinger VPS (Ubuntu)
 #   ./deploy.sh railway    — Deploy to Railway
 #   ./deploy.sh fly        — Deploy to Fly.io
 #   ./deploy.sh render     — Deploy to Render
@@ -70,6 +71,70 @@ deploy_local() {
   echo -e "     Swagger:  ${BLUE}http://localhost:${API_PORT:-8000}/docs${NC}"
   echo ""
   echo -e "${YELLOW}     Para parar: ./deploy.sh stop${NC}"
+}
+
+# ---------------------------------------------------------------------------
+# HOSTINGER VPS
+# ---------------------------------------------------------------------------
+deploy_hostinger() {
+  echo -e "${BLUE}[*] Deploy para Hostinger VPS...${NC}"
+  echo ""
+
+  if [ -f deploy-hostinger.sh ]; then
+    echo -e "${GREEN}Script deploy-hostinger.sh encontrado.${NC}"
+  else
+    echo -e "${RED}[x] deploy-hostinger.sh nao encontrado.${NC}"
+    exit 1
+  fi
+
+  echo -e "${GOLD}=== GUIA: Deploy na Hostinger VPS ===${NC}"
+  echo ""
+  echo -e "${GREEN}PLANO RECOMENDADO:${NC}"
+  echo "  KVM 2 — 2 vCPU, 8GB RAM, 100GB SSD — ~R\$40/mes"
+  echo "  (minimo: KVM 1 — 1 vCPU, 4GB RAM, 50GB SSD)"
+  echo "  SO: Ubuntu 22.04 ou 24.04"
+  echo ""
+  echo -e "${GREEN}PASSO A PASSO:${NC}"
+  echo ""
+  echo -e "  ${GOLD}1.${NC} Compre VPS em ${BLUE}https://www.hostinger.com.br/servidor-vps${NC}"
+  echo -e "     Selecione Ubuntu 22.04/24.04 na instalacao"
+  echo ""
+  echo -e "  ${GOLD}2.${NC} Copie o script para a VPS:"
+  echo -e "     ${BLUE}scp deploy-hostinger.sh root@SEU_IP:/root/${NC}"
+  echo ""
+  echo -e "  ${GOLD}3.${NC} Conecte via SSH e execute:"
+  echo -e "     ${BLUE}ssh root@SEU_IP${NC}"
+  echo -e "     ${BLUE}chmod +x /root/deploy-hostinger.sh${NC}"
+  echo -e "     ${BLUE}ANTHROPIC_API_KEY=sk-ant-... DOMAIN=legal.seudominio.com.br /root/deploy-hostinger.sh${NC}"
+  echo ""
+  echo -e "  ${GOLD}4.${NC} Ou execute remotamente (one-liner):"
+  echo -e "     ${BLUE}ssh root@SEU_IP 'ANTHROPIC_API_KEY=sk-ant-... bash -s' < deploy-hostinger.sh${NC}"
+  echo ""
+  echo -e "${GREEN}O QUE O SCRIPT INSTALA:${NC}"
+  echo "  - Docker + Docker Compose"
+  echo "  - Node.js 20"
+  echo "  - Nginx (reverse proxy)"
+  echo "  - SSL/HTTPS (Let's Encrypt via Certbot)"
+  echo "  - Firewall (UFW)"
+  echo "  - Servico systemd (auto-restart)"
+  echo ""
+  echo -e "${GREEN}APOS O DEPLOY:${NC}"
+  echo "  - App acessivel em http://SEU_IP ou https://SEU_DOMINIO"
+  echo "  - Reiniciar: systemctl restart legal-analyst"
+  echo "  - Logs: docker compose logs -f"
+  echo "  - Atualizar: cd /opt/legal-analyst && git pull && docker compose up -d --build"
+  echo ""
+
+  read -p "Deseja copiar o script para uma VPS agora? (Informe IP ou 'n'): " VPS_IP
+  if [ "$VPS_IP" != "n" ] && [ -n "$VPS_IP" ]; then
+    echo -e "${BLUE}[*] Copiando script para root@${VPS_IP}...${NC}"
+    scp deploy-hostinger.sh "root@${VPS_IP}:/root/"
+    echo -e "${GREEN}[OK] Script copiado!${NC}"
+    echo ""
+    echo -e "Agora conecte e execute:"
+    echo -e "  ${BLUE}ssh root@${VPS_IP}${NC}"
+    echo -e "  ${BLUE}chmod +x /root/deploy-hostinger.sh && /root/deploy-hostinger.sh${NC}"
+  fi
 }
 
 # ---------------------------------------------------------------------------
@@ -296,20 +361,22 @@ show_status() {
 banner
 
 case "${1:-help}" in
-  local)    deploy_local ;;
-  railway)  deploy_railway ;;
-  fly)      deploy_fly ;;
-  render)   deploy_render ;;
-  vercel)   deploy_vercel ;;
-  stop)     stop_local ;;
-  status)   show_status ;;
+  local)     deploy_local ;;
+  hostinger) deploy_hostinger ;;
+  railway)   deploy_railway ;;
+  fly)       deploy_fly ;;
+  render)    deploy_render ;;
+  vercel)    deploy_vercel ;;
+  stop)      stop_local ;;
+  status)    show_status ;;
   *)
     echo "Uso: ./deploy.sh <comando>"
     echo ""
     echo "Comandos disponiveis:"
     echo ""
     echo -e "  ${GREEN}local${NC}      Docker Compose (desenvolvimento local)"
-    echo -e "  ${GREEN}railway${NC}    Deploy para Railway (recomendado)"
+    echo -e "  ${GREEN}hostinger${NC}  Deploy para Hostinger VPS (Ubuntu)"
+    echo -e "  ${GREEN}railway${NC}    Deploy para Railway"
     echo -e "  ${GREEN}fly${NC}        Deploy para Fly.io"
     echo -e "  ${GREEN}render${NC}     Deploy para Render"
     echo -e "  ${GREEN}vercel${NC}     Deploy frontend para Vercel"
