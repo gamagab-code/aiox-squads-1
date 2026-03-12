@@ -44,7 +44,7 @@ NC='\033[0m'
 # ---------------------------------------------------------------------------
 # Configuracao — EDITE AQUI
 # ---------------------------------------------------------------------------
-REPO_URL="${REPO_URL:-https://github.com/SEU_USUARIO/aiox-squads-FelippePestana.git}"
+REPO_URL="${REPO_URL:-https://github.com/felippepestana/aiox-squads-FelippePestana.git}"
 BRANCH="${BRANCH:-main}"
 APP_DIR="/opt/legal-analyst"
 DOMAIN="${DOMAIN:-}"
