@@ -21,8 +21,11 @@ ANTHROPIC_MODEL = os.getenv("ANTHROPIC_MODEL", "claude-sonnet-4-20250514")
 MAX_UPLOAD_SIZE_MB = 50
 ALLOWED_EXTENSIONS = {".pdf"}
 
+APP_URL = os.getenv("APP_URL", "http://localhost:3000")
+
 CORS_ORIGINS = [
     "http://localhost:5173",
     "http://localhost:3000",
     "http://127.0.0.1:5173",
+    APP_URL,
 ]

@@ -5,6 +5,7 @@ import ChatInterface from "./components/ChatInterface";
 import PDFViewer from "./components/PDFViewer";
 import AgentPanel from "./components/AgentPanel";
 import LegalEditor from "./components/LegalEditor";
+import VSLPage from "./pages/VSLPage";
 import { useChat } from "./hooks/useChat";
 import { useAgents } from "./hooks/useAgents";
 import { usePDF } from "./hooks/usePDF";
@@ -15,16 +16,27 @@ export default function App() {
   const [activeView, setActiveView] = useState<PanelView>("chat");
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [sessions, setSessions] = useState<SessionSummary[]>([]);
+  const [showVSL, setShowVSL] = useState(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("success") === "true") return false;
+    if (window.location.pathname === "/app") return false;
+    return true;
+  });
 
   const chat = useChat();
   const agents = useAgents();
   const pdf = usePDF();
 
-  // Initialize on mount
   useEffect(() => {
+    if (showVSL) return;
     chat.initSession("Nova Analise Juridica");
     api.listSessions().then(setSessions).catch(() => {});
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [showVSL]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const handleAccessApp = useCallback(() => {
+    setShowVSL(false);
+    window.history.pushState({}, "", "/app");
+  }, []);
 
   const handleNewSession = useCallback(async () => {
     await chat.initSession("Nova Analise");
@@ -127,6 +139,10 @@ export default function App() {
     },
     [pdf],
   );
+
+  if (showVSL) {
+    return <VSLPage onAccessApp={handleAccessApp} />;
+  }
 
   return (
     <div className="h-screen flex flex-col overflow-hidden">

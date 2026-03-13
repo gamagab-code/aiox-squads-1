@@ -163,6 +163,11 @@ ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
 ANTHROPIC_MODEL=claude-sonnet-4-20250514
 API_PORT=${API_PORT}
 UI_PORT=${UI_PORT}
+STRIPE_SECRET_KEY=${STRIPE_SECRET_KEY:-}
+STRIPE_PUBLISHABLE_KEY=${STRIPE_PUBLISHABLE_KEY:-}
+STRIPE_WEBHOOK_SECRET=${STRIPE_WEBHOOK_SECRET:-}
+STRIPE_PRICE_ID=${STRIPE_PRICE_ID:-}
+APP_URL=${APP_URL:-http://${PUBLIC_IP:-localhost}}
 ENVFILE
 
 echo -e "${GREEN}    .env configurado${NC}"
@@ -216,6 +221,15 @@ server {
         proxy_set_header X-Real-IP \$remote_addr;
         client_max_body_size 50M;
         proxy_read_timeout 300s;
+    }
+
+    # Stripe webhook — raw body required
+    location /api/stripe/webhook {
+        proxy_pass http://127.0.0.1:${API_PORT};
+        proxy_set_header Host \$host;
+        proxy_set_header X-Real-IP \$remote_addr;
+        proxy_set_header Stripe-Signature \$http_stripe_signature;
+        proxy_read_timeout 30s;
     }
 
     # Clips (imagens extraidas)

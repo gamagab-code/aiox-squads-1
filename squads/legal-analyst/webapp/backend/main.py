@@ -5,7 +5,7 @@ import shutil
 import uuid
 from pathlib import Path
 
-from fastapi import FastAPI, File, HTTPException, UploadFile
+from fastapi import FastAPI, File, HTTPException, Request, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
@@ -23,6 +23,17 @@ from core.models import (
     SendMessageRequest,
     StrategicReportRequest,
     UploadResponse,
+)
+from core.stripe_service import (
+    CheckoutRequest,
+    create_checkout_session,
+    create_one_time_checkout,
+    get_subscription_status,
+    cancel_subscription,
+    process_webhook,
+    validate_access,
+    get_plans,
+    STRIPE_PUBLISHABLE_KEY,
 )
 from agents.loader import load_all_agents, load_agent, search_agents, get_agent_full_prompt
 
@@ -318,6 +329,69 @@ async def strategic_report(req: StrategicReportRequest):
         content=f"*relatorio {focus}",
     )
     return response.model_dump()
+
+
+# ---------------------------------------------------------------------------
+# Stripe Payments & VSL
+# ---------------------------------------------------------------------------
+
+@app.get("/api/stripe/config")
+async def stripe_config():
+    return {"publishable_key": STRIPE_PUBLISHABLE_KEY}
+
+
+@app.get("/api/stripe/plans")
+async def stripe_plans():
+    return get_plans()
+
+
+@app.post("/api/stripe/checkout")
+async def stripe_checkout(req: CheckoutRequest):
+    try:
+        result = create_checkout_session(req)
+        return result.model_dump()
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Stripe error: {str(e)}")
+
+
+@app.post("/api/stripe/checkout-once")
+async def stripe_checkout_once(amount: int = 19700, description: str = "Legal Analyst Pro", email: str = ""):
+    try:
+        result = create_one_time_checkout(amount, description, email)
+        return result.model_dump()
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Stripe error: {str(e)}")
+
+
+@app.post("/api/stripe/webhook")
+async def stripe_webhook(request: Request):
+    payload = await request.body()
+    sig = request.headers.get("stripe-signature", "")
+    try:
+        result = process_webhook(payload, sig)
+        return result
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=str(e))
+
+
+@app.get("/api/stripe/subscription/{email}")
+async def stripe_subscription(email: str):
+    return get_subscription_status(email).model_dump()
+
+
+@app.post("/api/stripe/cancel/{email}")
+async def stripe_cancel(email: str):
+    return cancel_subscription(email)
+
+
+@app.get("/api/stripe/validate/{token}")
+async def stripe_validate(token: str):
+    access = validate_access(token)
+    if not access:
+        raise HTTPException(status_code=401, detail="Token invalido ou expirado")
+    return access.model_dump()
 
 
 # ---------------------------------------------------------------------------
